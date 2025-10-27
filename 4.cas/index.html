@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div> 
+      <ul id="list">
+        <li>Prva stavka</li>
+      </ul>
+      <button id="addBtn">Dodaj stavku</button>
+    </div>
+
+    <script>
+      const list = document.getElementById('list')
+      const addBtn = document.getElementById('addBtn')
+      let brojac = 1;
+
+      addBtn.addEventListener('click', () => {
+        const novaStavka = document.createElement('li');
+        novaStavka.textContent = `Nova stavka ${++brojac}`;
+        list.appendChild(novaStavka);
+      })
+    </script>
+
+
+    <div style="margin: 0 0 10px 0">
+      <p id="text">Ovo je tajni tekst</p>
+      <button id="toggleBtn">Sakrij</button>
+    </div>
+      <script>
+        const text = document.getElementById('text');
+        const toggleBtn = document.getElementById('toggleBtn');
+
+        // if (true) {
+        //   text.textContent = 'Text'
+        // } else {
+        //   text.textContent = 'Not Text'
+        // }
+
+        // if (uslov) {
+        //   // Ako je uslov true
+        // } else {
+        //   // Ako je uslov false
+        // }
+
+        // uslov ? Ako je uslov true : Ako je uslov false;
+
+        // 5 > 7 ? console.log('jeste') : console.log('nije');;
+
+        toggleBtn.addEventListener('click', () => {
+          if (text.style.display === 'none') {
+            text.style.display = 'block';
+            toggleBtn.textContent = 'Sakrij'
+          } else {
+            text.style.display = 'none';
+            toggleBtn.textContent = 'Prikazi'
+          }
+        })
+      </script>
+
+
+<div>
+      <img id="slika" src="https://placehold.co/600x400?text=Slika+1" width="200" />
+      <button id="changeImg">Promeni sliku</button>
+</div>
+
+      <script>
+        const slika = document.getElementById('slika');
+        const changeImg = document.getElementById('changeImg');
+        let imgArray = [
+          'https://placehold.co/600x400?text=Slika+1',
+          'https://placehold.co/600x400?text=Slika+2',
+          'https://placehold.co/600x400?text=Slika+3',
+          'https://placehold.co/600x400?text=Slika+4',
+          'https://placehold.co/600x400?text=Slika+5',
+          'https://placehold.co/600x400?text=Slika+6',
+          'https://placehold.co/600x400?text=Slika+7',
+          'https://placehold.co/600x400?text=Slika+8',
+        ];
+        let imgIndex = 0;
+
+        changeImg.addEventListener('click', () => {
+          imgIndex = (imgIndex + 1) % imgArray.length;
+          slika.src = imgArray[imgIndex]
+        })
+      </script>
+    </li>
+  </body>
+</html>
