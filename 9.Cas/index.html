@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="controls">
+      <input id="search" placeholder="Pretraži po imenu..." />
+      <select id="cityFilter">
+        <option value="">Svi gradovi</option>
+        <option value="Novi Pazar">Novi Pazar</option>
+        <option value="Beograd">Beograd</option>
+        <option value="Niš">Niš</option>
+      </select>
+      <select id="gradeFilter">
+        <option value="">Sve ocene</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+
+      <button id="sortDesc">Sort A-Z</button>
+      <button id="sortAsce">Sort Z-A</button>
+    </div>
+
+    <div id="studentContainer"></div>
+    <script src="app.js"></script>
+    <script src="spread.js"></script>
+  </body>
+</html>
