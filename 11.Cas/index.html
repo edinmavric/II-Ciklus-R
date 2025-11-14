@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student List - DOM navigation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+      li {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+        margin-bottom: 6px;
+      }
+      button {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h2>Student List</h2>
+
+      <ul id="student-list">
+        <li>
+          <span class="id" style="width: 40px; display: inline-block">1</span>
+          <span class="name">Amar</span>
+          <button class="btn-edit">Edit</button>
+          <button class="btn-remove">Remove</button>
+        </li>
+        <li>
+          <span class="id" style="width: 40px; display: inline-block">2</span>
+          <span class="name">Sara</span>
+          <button class="btn-edit">Edit</button>
+          <button class="btn-remove">Remove</button>
+        </li>
+        <li>
+          <span class="id" style="width: 40px; display: inline-block">3</span>
+          <span class="name">David</span>
+          <button class="btn-edit">Edit</button>
+          <button class="btn-remove">Remove</button>
+        </li>
+      </ul>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
