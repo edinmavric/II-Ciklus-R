@@ -1,0 +1,84 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  padding: 30px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+#gallery {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.item {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  width: 140px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.2s ease;
+}
+
+.item img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.item h3 {
+  margin: 5px 0 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.remove {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #ff4e4e;
+  color: white;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.remove:hover {
+  background: #d63838;
+}
+
+#add {
+  display: block;
+  margin-top: 25px;
+  padding: 10px 18px;
+  border: none;
+  background: #0366d6;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#add:hover {
+  background: #024c9e;
+}
+
+.item.highlight-main {
+  border: 3px solid #0055ff;
+}
+
+.item.highlight-next {
+  background: #fff9c4;
+}
+
+.item.highlight-prev {
+  background: #cce7ff;
+}
