@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mini Dashboard</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+      }
+      section {
+        margin-bottom: 30px;
+      }
+      .item {
+        padding: 8px;
+        border: 1px solid #ddd;
+        margin: 6px 0;
+        cursor: pointer;
+      }
+      .item:hover {
+        background: #f3f3f3;
+      }
+      h2 {
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mini Dashboard</h1>
+
+    <section id="usersSection">
+      <h2>Users</h2>
+      <div id="usersList"></div>
+    </section>
+
+    <section id="postsSection" style="display: none">
+      <h2>Posts</h2>
+      <button id="backToUsers">⬅ Back to Users</button>
+      <div id="postsList"></div>
+    </section>
+
+    <section id="commentsSection" style="display: none">
+      <h2>Comments</h2>
+      <button id="backToPosts">⬅ Back to Posts</button>
+      <div id="commentsList"></div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
