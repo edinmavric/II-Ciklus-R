@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Dashboard - Kompletan Pregled</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Mini Dashboard</h1>
+
+    <div id="loadingIndicator" class="loading">Ucitavanje podataka...</div>
+
+    <div id="usersContainer" class="users-grid">
+      <!-- Korisnici ce biti prikazani ovde -->
+    </div>
+
+    <div id="detailedView" class="detailed-view" style="display: none;">
+      <button id="backButton" class="back-btn">Nazad</button>
+
+      <div id="userDetailContainer">
+        <!-- Detaljni pregled korisnika -->
+      </div>
+
+      <div id="postsContainer" class="posts-container">
+        <!-- Postovi korisnika -->
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
