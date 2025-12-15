@@ -1,0 +1,1 @@
+Napraviti 4 forme za pravljenje podataka sa POST metodom: /comments, /todos, /albums i /users.

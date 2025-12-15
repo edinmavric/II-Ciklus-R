@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POST Metod - Primer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input, textarea {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #rezultat {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f0f0f0;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kreiranje novog posta</h1>
+
+  <form id="postForm">
+    <input type="text" id="title" placeholder="Naslov posta" required>
+    <textarea id="body" placeholder="Sadržaj posta" rows="4" required></textarea>
+    <input type="number" id="userId" placeholder="User ID" value="1" step="1" required>
+    <button type="submit">Pošalji POST zahtev</button>
+  </form>
+
+  <form id="todoForm">
+    <input type="text" id="todoTitle" placeholder="Naslov todo-a" required>
+    <label>
+      <input type="checkbox" id="isCompleted">
+      Zavrsen?
+    </label>
+    <input type="number" id="todoUserId" placeholder="User ID" value="1" step="1" required>
+    <button type="submit">Pošalji POST zahtev</button>
+  </form>
+
+  <div id="rezultat"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
