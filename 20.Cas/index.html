@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DELETE Metod - Primer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 12px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #c82333;
+    }
+    #rezultat {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f0f0f0;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Brisanje podataka (DELETE)</h1>
+
+  <form id="deletePostForm">
+    <h3>Obriši post</h3>
+    <input type="number" id="postId" placeholder="ID posta za brisanje" value="1" required>
+    <button type="submit">Pošalji DELETE zahtev</button>
+  </form>
+
+  <form id="deleteTodoForm">
+    <h3>Obriši todo</h3>
+    <input type="number" id="todoId" placeholder="ID todo-a za brisanje" value="1" required>
+    <button type="submit">Pošalji DELETE zahtev</button>
+  </form>
+
+  <div id="rezultat"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
