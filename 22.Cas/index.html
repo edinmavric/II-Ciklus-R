@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Vežba - Korisnici i Postovi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upravljanje Korisnicima i Postovima</h1>
+
+        <!-- Loading indikator -->
+        <div id="loading" class="loading hidden">Učitavanje...</div>
+
+        <!-- Greška -->
+        <div id="error" class="error hidden"></div>
+
+        <!-- Tabela korisnika -->
+        <section id="users-section">
+            <h2>Korisnici</h2>
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ime</th>
+                        <th>Email</th>
+                        <th>Grad</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody id="users-body">
+                    <!-- Korisnici će biti ubačeni ovde -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Sekcija za postove -->
+        <section id="posts-section" class="hidden">
+            <h2>Postovi korisnika: <span id="selected-user-name"></span></h2>
+
+            <!-- Forma za novi post -->
+            <div id="new-post-form">
+                <h3>Dodaj novi post</h3>
+                <form id="post-form">
+                    <div class="form-group">
+                        <label for="post-title">Naslov:</label>
+                        <input type="text" id="post-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="post-body">Sadržaj:</label>
+                        <textarea id="post-body" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Dodaj Post</button>
+                </form>
+            </div>
+
+            <!-- Lista postova -->
+            <div id="posts-list">
+                <!-- Postovi će biti ubačeni ovde -->
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
