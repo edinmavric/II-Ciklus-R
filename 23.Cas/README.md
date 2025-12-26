@@ -1,0 +1,1 @@
+Obnavljanje i vezbanje
