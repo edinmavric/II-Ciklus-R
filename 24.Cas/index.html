@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API Vežba</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Sekcije */
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #007bff;
+        }
+
+        /* Forme */
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="number"] {
+            width: 80px;
+        }
+        input[type="text"], textarea {
+            flex: 1;
+            min-width: 200px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            color: white;
+        }
+        .btn-get { background: #28a745; }
+        .btn-post { background: #007bff; }
+        .btn-put { background: #fd7e14; }
+        .btn-patch { background: #6f42c1; }
+        .btn-delete { background: #dc3545; }
+        button:hover { opacity: 0.9; }
+
+        /* Rezultat */
+        #rezultat {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            min-height: 100px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .loading { color: #ffd700; }
+        .error { color: #ff6b6b; }
+        .success { color: #69ff69; }
+
+        /* Info */
+        .info {
+            background: #e7f3ff;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .zadatak {
+            background: #fff3cd;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            border-left: 4px solid #ffc107;
+        }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fetch API Vežba</h1>
+        <p class="subtitle">JSONPlaceholder API - https://jsonplaceholder.typicode.com</p>
+
+        <!-- ZADATAK 1: GET - Svi korisnici -->
+        <div class="section">
+            <h2>Zadatak 1: GET - Učitaj sve korisnike</h2>
+            <div class="info">
+                Ruta: <code>GET /users</code>
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>ucitajSveKorisnike()</code> u app.js
+            </div>
+            <button class="btn-get" id="btn-svi-korisnici">Učitaj korisnike</button>
+        </div>
+
+        <!-- ZADATAK 2: GET - Korisnik po ID-ju -->
+        <div class="section">
+            <h2>Zadatak 2: GET - Učitaj korisnika po ID-ju</h2>
+            <div class="info">
+                Ruta: <code>GET /users/{id}</code> - parametar u URL-u
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>ucitajKorisnika(id)</code> - koristi template string za ID
+            </div>
+            <div class="form-row">
+                <input type="number" id="userId" value="1" min="1" max="10" placeholder="ID">
+                <button class="btn-get" id="btn-korisnik">Učitaj korisnika</button>
+            </div>
+        </div>
+
+        <!-- ZADATAK 3: GET - Postovi korisnika (query parametar) -->
+        <div class="section">
+            <h2>Zadatak 3: GET - Postovi korisnika (query parametar)</h2>
+            <div class="info">
+                Ruta: <code>GET /posts?userId={id}</code> - query parametar posle ?
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>ucitajPostoveKorisnika(userId)</code>
+            </div>
+            <div class="form-row">
+                <select id="userIdZaPostove">
+                    <option value="1">Korisnik 1</option>
+                    <option value="2">Korisnik 2</option>
+                    <option value="3">Korisnik 3</option>
+                    <option value="4">Korisnik 4</option>
+                    <option value="5">Korisnik 5</option>
+                </select>
+                <button class="btn-get" id="btn-postovi-korisnika">Učitaj postove</button>
+            </div>
+        </div>
+
+        <!-- ZADATAK 4: GET - Todos korisnika -->
+        <div class="section">
+            <h2>Zadatak 4: GET - Todos korisnika</h2>
+            <div class="info">
+                Ruta: <code>GET /todos?userId={id}</code> - query parametar
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>ucitajTodosKorisnika(userId)</code>
+            </div>
+            <div class="form-row">
+                <input type="number" id="userIdZaTodos" value="1" min="1" max="10" placeholder="User ID">
+                <button class="btn-get" id="btn-todos">Učitaj todos</button>
+            </div>
+        </div>
+
+        <!-- ZADATAK 5: GET - Komentari posta (nested ruta) -->
+        <div class="section">
+            <h2>Zadatak 5: GET - Komentari posta (nested ruta)</h2>
+            <div class="info">
+                Ruta: <code>GET /posts/{id}/comments</code> - nested resurs
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>ucitajKomentare(postId)</code>
+            </div>
+            <div class="form-row">
+                <input type="number" id="postIdZaKomentare" value="1" min="1" max="100" placeholder="Post ID">
+                <button class="btn-get" id="btn-komentari">Učitaj komentare</button>
+            </div>
+        </div>
+
+        <!-- ZADATAK 6: GET sa više query parametara -->
+        <div class="section">
+            <h2>Zadatak 6: GET - Postovi sa limitom</h2>
+            <div class="info">
+                Ruta: <code>GET /posts?_start={start}&_limit={limit}</code> - više query parametara
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>ucitajPostoveSaLimitom(start, limit)</code>
+            </div>
+            <div class="form-row">
+                <label>Start: <input type="number" id="postStart" value="0" min="0"></label>
+                <label>Limit: <input type="number" id="postLimit" value="5" min="1" max="20"></label>
+                <button class="btn-get" id="btn-postovi-limit">Učitaj postove</button>
+            </div>
+        </div>
+
+        <!-- ZADATAK 7: POST - Kreiraj post -->
+        <div class="section">
+            <h2>Zadatak 7: POST - Kreiraj novi post</h2>
+            <div class="info">
+                Ruta: <code>POST /posts</code> - kreira novi resurs
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>kreirajPost(title, body, userId)</code>
+            </div>
+            <div class="form-row">
+                <input type="text" id="postTitle" placeholder="Naslov posta">
+            </div>
+            <div class="form-row">
+                <textarea id="postBody" rows="3" placeholder="Sadržaj posta"></textarea>
+            </div>
+            <div class="form-row">
+                <input type="number" id="postUserId" value="1" min="1" max="10" placeholder="User ID">
+                <button class="btn-post" id="btn-kreiraj-post">Kreiraj post (POST)</button>
+            </div>
+        </div>
+
+        <!-- ZADATAK 8: POST - Kreiraj todo -->
+        <div class="section">
+            <h2>Zadatak 8: POST - Kreiraj novi todo</h2>
+            <div class="info">
+                Ruta: <code>POST /todos</code>
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>kreirajTodo(title, completed, userId)</code>
+            </div>
+            <div class="form-row">
+                <input type="text" id="todoTitle" placeholder="Naslov todo-a">
+                <label><input type="checkbox" id="todoCompleted"> Završeno</label>
+            </div>
+            <div class="form-row">
+                <input type="number" id="todoUserId" value="1" min="1" max="10" placeholder="User ID">
+                <button class="btn-post" id="btn-kreiraj-todo">Kreiraj todo (POST)</button>
+            </div>
+        </div>
+
+        <!-- ZADATAK 9: PUT - Izmeni post kompletno -->
+        <div class="section">
+            <h2>Zadatak 9: PUT - Izmeni post kompletno</h2>
+            <div class="info">
+                Ruta: <code>PUT /posts/{id}</code> - zamenjuje CEO resurs (moramo poslati SVE podatke)
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>izmeniPostPut(id, title, body, userId)</code>
+            </div>
+            <div class="form-row">
+                <input type="number" id="putPostId" value="1" min="1" max="100" placeholder="Post ID">
+                <button class="btn-get" id="btn-ucitaj-za-put">Učitaj postojeće</button>
+            </div>
+            <div class="form-row">
+                <input type="text" id="putTitle" placeholder="Novi naslov">
+            </div>
+            <div class="form-row">
+                <textarea id="putBody" rows="3" placeholder="Novi sadržaj"></textarea>
+            </div>
+            <div class="form-row">
+                <input type="number" id="putUserId" value="1" min="1" max="10" placeholder="User ID">
+                <button class="btn-put" id="btn-put">Izmeni (PUT)</button>
+            </div>
+        </div>
+
+        <!-- ZADATAK 10: PATCH - Izmeni post delimično -->
+        <div class="section">
+            <h2>Zadatak 10: PATCH - Izmeni post delimično</h2>
+            <div class="info">
+                Ruta: <code>PATCH /posts/{id}</code> - menja samo poslata polja
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>izmeniPostPatch(id, title)</code>
+            </div>
+            <div class="form-row">
+                <input type="number" id="patchPostId" value="1" min="1" max="100" placeholder="Post ID">
+            </div>
+            <div class="form-row">
+                <input type="text" id="patchTitle" placeholder="Novi naslov">
+            </div>
+            <button class="btn-patch" id="btn-patch">Izmeni samo naslov (PATCH)</button>
+        </div>
+
+        <!-- ZADATAK 11: DELETE - Obriši post -->
+        <div class="section">
+            <h2>Zadatak 11: DELETE - Obriši post</h2>
+            <div class="info">
+                Ruta: <code>DELETE /posts/{id}</code> - briše resurs
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>obrisiPost(id)</code>
+            </div>
+            <div class="form-row">
+                <input type="number" id="deletePostId" value="1" min="1" max="100" placeholder="Post ID">
+                <button class="btn-delete" id="btn-delete">Obriši post (DELETE)</button>
+            </div>
+        </div>
+
+        <!-- ZADATAK 12: DELETE - Obriši todo -->
+        <div class="section">
+            <h2>Zadatak 12: DELETE - Obriši todo</h2>
+            <div class="info">
+                Ruta: <code>DELETE /todos/{id}</code>
+            </div>
+            <div class="zadatak">
+                <strong>Zadatak:</strong> Dopuni funkciju <code>obrisiTodo(id)</code>
+            </div>
+            <div class="form-row">
+                <input type="number" id="deleteTodoId" value="1" min="1" max="200" placeholder="Todo ID">
+                <button class="btn-delete" id="btn-delete-todo">Obriši todo (DELETE)</button>
+            </div>
+        </div>
+
+        <!-- Rezultat -->
+        <div class="section">
+            <h2>Rezultat</h2>
+            <div id="rezultat">Klikni na neko dugme da vidiš rezultat...</div>
+        </div>
+    </div>
+
+    <script src="resenje.js"></script>
+</body>
+</html>
